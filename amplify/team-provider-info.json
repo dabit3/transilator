@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "translator-dev-20190827120112-authRole",
+            "UnauthRoleArn": "arn:aws:iam::557458351015:role/translator-dev-20190827120112-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::557458351015:role/translator-dev-20190827120112-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "translator-dev-20190827120112-deployment",
+            "UnauthRoleName": "translator-dev-20190827120112-unauthRole",
+            "StackName": "translator-dev-20190827120112",
+            "StackId": "arn:aws:cloudformation:us-east-2:557458351015:stack/translator-dev-20190827120112/0b16de80-c8fd-11e9-95be-0a5f3eca4dfa"
+        },
+        "categories": {
+            "auth": {
+                "translator1c4d8668": {}
+            }
+        }
+    }
+}

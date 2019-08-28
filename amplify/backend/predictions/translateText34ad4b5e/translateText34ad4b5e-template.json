@@ -1,0 +1,145 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Convert resource(s) stack creation using Amplify CLI",
+    "Parameters": {
+        "authRoleName": {
+            "Type": "String"
+        },
+        "unauthRoleName": {
+            "Type": "String"
+        },
+        "convertPolicyName": {
+            "Type": "String"
+        },
+        "convertType": {
+            "Type": "String"
+        },
+        "access": {
+            "Type": "String"
+        },
+        "resourceName": {
+            "Type": "String"
+        },
+        "sourceLang": {
+            "Type": "String"
+        },
+        "targetLang": {
+            "Type": "String"
+        },
+        "env": {
+            "Type": "String"
+        }
+    },
+    "Conditions": {
+        "AuthGuestRoleAccess": {
+            "Fn::Equals": [
+                {
+                    "Ref": "access"
+                },
+                "authAndGuest"
+            ]
+        }
+    },
+    "Outputs": {
+        "region": {
+            "Value": {
+                "Fn::FindInMap": [
+                    "RegionMapping",
+                    {
+                        "Ref": "AWS::Region"
+                    },
+                    {
+                        "Ref": "convertType"
+                    }
+                ]
+            }
+        },
+        "sourceLang": {
+            "Value": {
+                "Ref": "sourceLang"
+            }
+        },
+        "targetLang": {
+            "Value": {
+                "Ref": "targetLang"
+            }
+        }
+    },
+    "Resources": {
+        "TranslatePolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": {
+                    "Ref": "convertPolicyName"
+                },
+                "Roles": {
+                    "Fn::If": [
+                        "AuthGuestRoleAccess",
+                        [
+                            {
+                                "Ref": "authRoleName"
+                            },
+                            {
+                                "Ref": "unauthRoleName"
+                            }
+                        ],
+                        [
+                            {
+                                "Ref": "authRoleName"
+                            }
+                        ]
+                    ]
+                },
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "translate:TranslateText"
+                            ],
+                            "Resource": "*"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "Mappings": {
+        "RegionMapping": {
+            "us-east-1": {
+                "translateText": "us-east-1"
+            },
+            "us-east-2": {
+                "translateText": "us-east-1"
+            },
+            "us-west-2": {
+                "translateText": "us-west-2"
+            },
+            "eu-west-1": {
+                "translateText": "eu-west-1"
+            },
+            "eu-west-2": {
+                "translateText": "eu-west-1"
+            },
+            "eu-central-1": {
+                "translateText": "eu-central-1"
+            },
+            "ap-northeast-1": {
+                "translateText": "ap-northeast-1"
+            },
+            "ap-northeast-2": {
+                "translateText": "ap-northeast-2"
+            },
+            "ap-southeast-1": {
+                "translateText": "ap-southeast-1"
+            },
+            "ap-southeast-2": {
+                "translateText": "ap-southeast-1"
+            },
+            "ap-south-1": {
+                "translateText": "ap-south-1"
+            }
+        }
+    }
+}

@@ -21,7 +21,7 @@ chrome.runtime.onMessage.addListener(
 
 const voices = {
   ar: "Zeina",
-  cmn: "Zhiyu",
+  zh: "Zhiyu",
   da: "Naja",
   nl: "Lotte",
   en: "Joanna",

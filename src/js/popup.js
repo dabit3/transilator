@@ -1,7 +1,6 @@
 import "../css/popup.css";
-import { state } from './content'
 
-window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', function(identifier, sender) {
     const language = identifier.toElement.dataset.id
     if (!language) return
@@ -11,10 +10,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       });
     });
   })
-
   var buttons = document.getElementsByClassName("lang-button");
-
-  const language = state.getLanguage()
   Array.from(buttons).forEach(function(button) {
     button.addEventListener('click', function(item) {
       Array.from(buttons).forEach(item => item.classList.remove("button-selected"))

@@ -42,7 +42,6 @@ const voices = {
 Amplify.configure(config);
 Amplify.addPluggable(new AmazonAIPredictionsProvider());
 
-let audio = null
 let source = null
 
 console.log('loaded...');
@@ -125,10 +124,6 @@ document.addEventListener('mouseup', function translator() {
       text = document.selection.createRange().text;
   }
   if (text === '') return
-  if (audio) {
-    audio.pause();
-    audio.currentTime = 0;
-  }
   interpretFromPredictions(text)
 })
 

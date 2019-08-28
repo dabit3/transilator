@@ -1,9 +1,22 @@
 import Amplify, { Storage, Predictions } from 'aws-amplify';
 import { AmazonAIPredictionsProvider } from '@aws-amplify/predictions';
+import config from '../aws-exports.js'
 
-const config = {
+const state = {
+  language: 'en',
+  getLanguage: function() {
+    return this.language
+  },
+  setLanguage: function(language) {
+    this.language = language
+  }
+}
 
-};
+chrome.runtime.onMessage.addListener(
+  function(request) {
+    state.setLanguage(request.language)
+    return true
+})
 
 const voices = {
   arb: "Zeina",
@@ -36,8 +49,7 @@ let source = null
 
 console.log('loaded...');
 
-function interpretFromPredictions(textToInterpret) {
-  console.log('textToInterpret: ', textToInterpret)
+const interpretFromPredictions = textToInterpret => {
   Predictions.interpret({
     text: {
       source: {
@@ -47,8 +59,8 @@ function interpretFromPredictions(textToInterpret) {
     }
   }).then(result => {
     const language = result.textInterpretation.language
-    console.log('language: ', language)
-    translate(textToInterpret, language, 'en')
+    const translationLangugage = state.getLanguage()
+    translate(textToInterpret, language, translationLangugage)
   })
     .catch(err => {
       console.log('error: ', err)
@@ -65,8 +77,7 @@ function translate(textToTranslate, language, targetLanguage) {
       targetLanguage
     }
   }).then(result => {
-    console.log('successfully translated: ', result)
-    generateTextToSpeech(language, result.text)
+    generateTextToSpeech(targetLanguage, result.text)
   })
     .catch(err => {
       console.log('error translating: ', err)
@@ -120,12 +131,6 @@ document.addEventListener('mouseup', function translator() {
     audio.currentTime = 0;
   }
   interpretFromPredictions(text)
-  // audio = new Audio('https://s3.amazonaws.com/audio-experiments/examples/elon_mono.wav');
-  // audio.play();
-
-  // audio.addEventListener("ended", function(){
-  //   audio.pause();
-  //   audio.currentTime = 0;
-  //   audio = null
-  // });
 })
+
+export { state }

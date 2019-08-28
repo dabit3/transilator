@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@aws-amplify/predictions": "^1.0.3",
-    "aws-amplify": "^1.1.36"
+    "aws-amplify": "^1.1.36",
+    "mobx": "^5.13.0"
   }
 }

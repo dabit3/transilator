@@ -24,7 +24,7 @@ const voices = {
   zh: "Zhiyu",
   da: "Naja",
   nl: "Lotte",
-  en: "Joanna",
+  en: "Salli",
   fr: "Chantal",
   hi: "Aditi",
   it: "Carla",

@@ -13,32 +13,30 @@ const state = {
 }
 
 chrome.runtime.onMessage.addListener(
-  function(request) {
+  function(request, sender) {
+    if (!sender) return
     state.setLanguage(request.language)
     return true
 })
 
 const voices = {
-  arb: "Zeina",
+  ar: "Zeina",
   cmn: "Zhiyu",
   da: "Naja",
   nl: "Lotte",
   en: "Joanna",
   fr: "Chantal",
   hi: "Aditi",
-  is: "Dora",
   it: "Carla",
   ja: "Mizuki",
   ko: "Seoyeon",
-  nb: "Liv",
+  no: "Liv",
   pl: "Ewa",
   pt: "Vitoria",
-  ro: "Carmen",
   ru: "Tatyana",
   es: "Penelope",
   sv: "Astrid",
-  tr: "Filiz",
-  cy: "Gwyneth"
+  tr: "Filiz"
 }
 
 Amplify.configure(config);
@@ -126,6 +124,7 @@ document.addEventListener('mouseup', function translator() {
   } else if (document.selection && document.selection.type != "Control") {
       text = document.selection.createRange().text;
   }
+  if (text === '') return
   if (audio) {
     audio.pause();
     audio.currentTime = 0;

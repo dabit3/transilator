@@ -2,4 +2,28 @@
   cursor: pointer;
   background-color: #ededed;
   border-bottom: 1px solid #ddd;
+  margin: 0px;
+  padding: 10px 20px;
+  transform:scale(1);
+}
+
+.heading {
+  font-size: 20px;
+  margin: 0px;
+  padding: 5px 5px 10px;
+}
+
+.list {
+  height: 200px;
+  width: 200px;
+  overflow: scroll;
+}
+
+.button-selected {
+  background-color: #dddddd;
+}
+
+.element::-webkit-scrollbar { width: 0 !important }
+::-webkit-scrollbar { 
+  display: none; 
 }

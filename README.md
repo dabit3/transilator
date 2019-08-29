@@ -22,7 +22,7 @@
 
 ### Services used
 
-This app 
+This app uses Amazon Comprehend to interpret the language of the text, Amazon Translate for translation of the text, and Amazon Polly for voice synthesization of the text.
 
 ## Getting started
 

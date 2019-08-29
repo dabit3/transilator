@@ -1,4 +1,4 @@
-import Amplify, { Storage, Predictions } from 'aws-amplify';
+import Amplify, { Predictions } from 'aws-amplify';
 import { AmazonAIPredictionsProvider } from '@aws-amplify/predictions';
 import config from '../aws-exports.js'
 

@@ -56,7 +56,7 @@ npm run build
 
 5. Upload the extension to chrome
 
-- Visit chrome://extensions (via omnibox or menu -> Tools -> Extensions).
+- Visit chrome://extensions (menu -> settings -> Extensions).
 - Enable Developer mode by ticking the checkbox in the upper-right corner.
 - Click on the "Load unpacked extension..." button.
 - Select the directory containing your unpacked extension.

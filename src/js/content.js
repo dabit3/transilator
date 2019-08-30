@@ -46,7 +46,7 @@ let source = null
 
 console.log('loaded...');
 
-const interpretFromPredictions = textToInterpret => {
+function interpretFromPredictions(textToInterpret) {
   Predictions.interpret({
     text: {
       source: {

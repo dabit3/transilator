@@ -1,5 +1,7 @@
 ![Transilator Chrome Extension](./header.jpg)
 
+This code goes along with my blog post [How to Build an AI Enabled Natural Language Synthesization Chrome Extension](https://dev.to/dabit3/how-to-build-an-ai-enabled-natural-language-synthesization-chrome-extension-1bhl).
+
 ## Transilator Chrome Extension
 
 ### Features
